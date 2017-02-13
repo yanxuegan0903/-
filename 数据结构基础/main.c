@@ -202,6 +202,8 @@ void removeAll(ListNode *head){
         
         if (p1->next == NULL) {
             
+            head ->next = NULL;
+            
             free(p1);
             
             return ;
@@ -230,13 +232,16 @@ int main(int argc, const char * argv[]) {
     
     
     ListNode * head;
-    head = creatList(3);
+    head = creatList(1);
     
     printList(head);
-    printf("\n\n");
+    printf("\n");
     
     removeAll(head);
     
+    printf("移除后的个数为");
+    printList(head);
+    printf("\n");
     
     
     
