@@ -51,8 +51,10 @@ ListNode * creatList(int n){
         pre = p;
         
     }
-    
-    p->next = NULL;
+    if (n > 0 ) {
+        p->next = NULL;
+
+    }
     
     //
     return head;
@@ -185,7 +187,9 @@ void deleteList(ListNode *head,int i){
 
 
 
-/* 移除全部元素 */
+/* 
+ 移除全部元素 
+ */
 
 void removeAll(ListNode *head){
     
@@ -225,6 +229,36 @@ void removeAll(ListNode *head){
 }
 
 
+/*
+ 获取链表的长度
+ */
+
+int len = 0;
+
+int lenght(ListNode *head){
+    
+    
+    
+    ListNode *p1;
+    
+    if (head ->next == NULL) {
+        return 0;
+    }
+    
+    p1 = head ->next;
+    
+    len++;
+    
+    if (p1->next == NULL) {
+        return len;
+    }
+    
+    lenght(p1);
+    
+    
+    return len;
+}
+
 
 
 
@@ -237,9 +271,12 @@ int main(int argc, const char * argv[]) {
     printList(head);
     printf("\n");
     
-    removeAll(head);
     
-    printf("移除后的个数为");
+    printf("链表长度为：%d \n",lenght(head));
+    
+    
+    
+    printf("移除后的链表为：\n");
     printList(head);
     printf("\n");
     
