@@ -97,7 +97,7 @@ void insertList(ListNode *head,int i,char name[],int score){
     int j;
     
     if (i<1) {
-        printf("插入错误 节点不能小于1 \n");
+        printf("插入错误：不能小于1 \n");
     }else{
         
         j = 0;
@@ -109,7 +109,7 @@ void insertList(ListNode *head,int i,char name[],int score){
             p1 = p1->next;
             
             if (p1 == NULL) {
-                printf("插入错误，插入点大于 总数+1\n");
+                printf("插入错误：插入点大于 总数+1\n");
                 isOut = 1;
                 break ;
             }
@@ -132,9 +132,6 @@ void insertList(ListNode *head,int i,char name[],int score){
     
 }
 
-
-
-
 /*--------------------------------------------------------------------
  函数名称:deleteList(ListNode *head,int i)
  函数功能:删除链表结点
@@ -151,7 +148,7 @@ void deleteList(ListNode *head,int i){
     int j = 0;
     int isOut = 0;
     if (i < 1) {
-        printf("删除错误：节点不能小于1\n");
+        printf("删除错误：不能小于1\n");
     }else{
         
         p1 = head;
@@ -160,7 +157,7 @@ void deleteList(ListNode *head,int i){
             p1 = p1->next;
             
             if (p1 == NULL) {
-                printf("删除错误：节点不能大于总数\n");
+                printf("删除错误：不能大于总数\n");
                 isOut = 1;
                 break;
             }
@@ -180,11 +177,51 @@ void deleteList(ListNode *head,int i){
             free(p2);
           
         }else{
-            printf("删除错误：节点不能大于总数\n");
+            printf("删除错误：不能大于总数\n");
         }
     }
     
 }
+
+
+
+/* 移除全部元素 */
+
+void removeAll(ListNode *head){
+    
+    ListNode *p1,*p2;
+    
+    if (head->next == NULL) {
+        
+        printf("链表是空的 删除完毕");
+        
+        return ;
+    }else{
+        
+        p1 = head ->next;
+        
+        if (p1->next == NULL) {
+            
+            free(p1);
+            
+            return ;
+            
+        }else{
+            
+            p2 = p1 ->next;
+            free(p1);
+            head->next = p2;
+            
+        }
+        
+    }
+    
+    
+    removeAll(head);
+    
+    
+}
+
 
 
 
@@ -193,22 +230,14 @@ int main(int argc, const char * argv[]) {
     
     
     ListNode * head;
-    head = creatList(2);
+    head = creatList(3);
     
     printList(head);
     printf("\n\n");
     
-    insertList(head, 1, "123", 100);
-    
-    printList(head);
-    printf("\n\n");
+    removeAll(head);
     
     
-    
-    deleteList(head, 4);
-    
-    printList(head);
-    printf("\n\n");
     
     
     return 0;
