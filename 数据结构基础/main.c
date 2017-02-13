@@ -276,26 +276,67 @@ int isNull(ListNode * head){
 }
 
 
+/*
+ 返回单链表中第pos个结点中的元素，若pos超出范围，则停止程序运行
+ */
+
+ListNode *getObjectWithIndex(ListNode *head,int position){
+    
+    ListNode *p1;
+    
+    if (head->next == NULL || position <= 0) {
+        printf("链表为空 或者position 为0");
+        return NULL;
+    }
+    
+    
+    p1 = head->next;
+    
+    for (int i = 1; i <= position; i++) {
+        
+        if (i == position) {
+            return p1;
+        }
+        
+        
+        if (p1->next == NULL) {
+            printf("position 超出范围 跳出\n");
+            free(p1);
+            return NULL;
+        }
+        
+        
+        p1 = p1->next;
+        
+    }
+    
+    return p1;
+    
+    
+}
+
+
+
 int main(int argc, const char * argv[]) {
     
     
     ListNode * head;
-    head = creatList(0);
+    head = creatList(2);
     
     printList(head);
     printf("\n");
     
     
-    printf("链表长度为：%d \n",lenght(head));
+    ListNode *stu = getObjectWithIndex(head, 3);
+    if (stu != NULL) {
+        printf("stu.name = %s,stu.score = %d \n\n",stu->name,stu->score);
+    }
     
     
-    
-    printf("移除后的链表为：\n");
+    printf("\n\n");
     printList(head);
     printf("\n");
     
-    
-    isNull(head);
     
     
     return 0;
