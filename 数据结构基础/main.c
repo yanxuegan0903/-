@@ -233,11 +233,11 @@ void removeAll(ListNode *head){
  获取链表的长度
  */
 
-int len = 0;
+
 
 int lenght(ListNode *head){
     
-    
+    static int len = 0;
     
     ListNode *p1;
     
@@ -259,14 +259,28 @@ int lenght(ListNode *head){
     return len;
 }
 
+/*
+ 检查链表是否为空
+ */
 
+int isNull(ListNode * head){
+    
+    if (head->next == NULL) {
+        printf("链表为空\n");
+        
+        return 1;
+    }
+    printf("链表不为空\n");
+    
+    return 0;
+}
 
 
 int main(int argc, const char * argv[]) {
     
     
     ListNode * head;
-    head = creatList(1);
+    head = creatList(0);
     
     printList(head);
     printf("\n");
@@ -280,6 +294,8 @@ int main(int argc, const char * argv[]) {
     printList(head);
     printf("\n");
     
+    
+    isNull(head);
     
     
     return 0;
