@@ -375,13 +375,42 @@ void insertAtFirst(ListNode *head,ListNode *object){
     
 }
 
+/*
+ 在链表的末尾插入一个元素
+ */
+
+void insertAtLast(ListNode *head,ListNode *object){
+    
+    ListNode *p1;
+    p1 = head->next;
+    
+    if (p1 == NULL) {
+        head->next = object;
+        object ->next = NULL;
+        return ;
+    }else{
+    
+        insertAtLast(head->next, object);
+    
+    
+    }
+    
+    
+    
+    
+    
+}
+
+
+
+
 
 
 int main(int argc, const char * argv[]) {
     
     
     ListNode * head;
-    head = creatList(0);
+    head = creatList(2);
     
     printList(head);
     printf("\n");
@@ -393,7 +422,9 @@ int main(int argc, const char * argv[]) {
     
     strcpy(p1->name, "insert");
     p1->score = 111;
-    insertAtFirst(head, p1);
+//    insertAtFirst(head, p1);
+    
+    insertAtLast(head, p1);
     
     
     printf("\n\n");
