@@ -239,7 +239,7 @@ int lenght(ListNode *head){
     
     static int len = 0;
     
-    ListNode *p1;
+    static ListNode *p1;
     
     if (head ->next == NULL) {
         return 0;
@@ -316,21 +316,49 @@ ListNode *getObjectWithIndex(ListNode *head,int position){
 }
 
 
+/*
+ 从单链表中查找具有给定值x的第一个元素，若查找成功则返回该结点，否则返回NULL
+ */
+ListNode * getAddressWithName(ListNode * head,int score){
+    
+
+    
+    if (head->next == NULL) {
+        return NULL;
+    }else{
+        
+        if (head->next->score == score) {
+            
+            printf("找到 name:%s,score:%d\n",head->next->name,head->next->score);
+            
+            return head->next;
+        }else{
+            getAddressWithName(head->next, score);
+        }
+        
+        
+    }
+    
+    
+    return NULL;
+    
+    
+    
+}
+
 
 int main(int argc, const char * argv[]) {
     
     
     ListNode * head;
-    head = creatList(2);
+    head = creatList(3);
     
     printList(head);
     printf("\n");
     
     
-    ListNode *stu = getObjectWithIndex(head, 3);
-    if (stu != NULL) {
-        printf("stu.name = %s,stu.score = %d \n\n",stu->name,stu->score);
-    }
+    getAddressWithName(head, 100);
+    
     
     
     printf("\n\n");
