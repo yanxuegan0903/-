@@ -381,10 +381,8 @@ void insertAtFirst(ListNode *head,ListNode *object){
 
 void insertAtLast(ListNode *head,ListNode *object){
     
-    ListNode *p1;
-    p1 = head->next;
     
-    if (p1 == NULL) {
+    if (head->next == NULL) {
         head->next = object;
         object ->next = NULL;
         return ;
@@ -402,6 +400,17 @@ void insertAtLast(ListNode *head,ListNode *object){
 }
 
 
+/*
+ 交换两个元素的位置
+ */
+
+void exchangePosition(int firstPosition,int secondPosition){
+
+
+
+
+}
+
 
 
 
@@ -410,7 +419,7 @@ int main(int argc, const char * argv[]) {
     
     
     ListNode * head;
-    head = creatList(2);
+    head = creatList(0);
     
     printList(head);
     printf("\n");
