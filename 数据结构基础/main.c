@@ -347,18 +347,53 @@ ListNode * getAddressWithName(ListNode * head,int score){
 }
 
 
+/*
+    在链表的表头插入一个元素
+ */
+
+void insertAtFirst(ListNode *head,ListNode *object){
+    
+    if (head->next ==NULL) {
+    
+        head->next = object;
+        object->next = NULL;
+        
+    }else{
+        
+        ListNode * p1;
+        
+        p1 = head->next;
+        
+        head->next = object;
+        object->next = p1;
+        
+        
+    }
+    
+    
+    
+    
+}
+
+
+
 int main(int argc, const char * argv[]) {
     
     
     ListNode * head;
-    head = creatList(3);
+    head = creatList(0);
     
     printList(head);
     printf("\n");
     
     
-    getAddressWithName(head, 100);
+    ListNode * p1 = (ListNode*)malloc(sizeof(ListNode));
     
+    
+    
+    strcpy(p1->name, "insert");
+    p1->score = 111;
+    insertAtFirst(head, p1);
     
     
     printf("\n\n");
