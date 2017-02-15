@@ -400,16 +400,232 @@ void insertAtLast(ListNode *head,ListNode *object){
 }
 
 
+
+/*
+ 获取某一个位置的元素并返回
+ */
+ListNode * getPreListNode(ListNode *head, int i){
+    
+    ListNode *p1,*p2;
+    int j = 0;
+    int isOut = 0;
+    
+    if (i == 0) {
+        
+        if (head->next == NULL) {
+            return NULL;
+        }
+        
+        return head;
+        
+    }else if (i > 0){
+        
+        p1 = head;
+        
+        while (j < i - 1) {
+            p1 = p1->next;
+            
+            if (p1 == NULL) {
+                printf("删除错误：不能大于总数\n");
+                isOut = 1;
+                break;
+            }
+            
+            j++;
+            
+        }
+        
+        if (isOut == 0 && p1->next != NULL) {
+            
+            p2 = p1->next;
+            
+            if (p2->next == NULL) {
+                
+                return NULL ;
+            }
+            
+            return p2;
+            
+        }else{
+            printf("错误：不能大于总数\n");
+            
+            return NULL ;
+        }
+        
+    }else{
+        printf("错误：不能小于0\n");
+    }
+    
+    return NULL;
+    
+}
+
+
+
 /*
  交换两个元素的位置
  */
 
-void exchangePosition(int firstPosition,int secondPosition){
-
-
-
+void exchangePosition(ListNode *head, int firstPosition,int secondPosition){
+    
+    if (head->next == NULL) {
+        printf("链表为空 直接返回\n");
+        return ;
+    }
+    
+    if (firstPosition == secondPosition) {
+        printf("两个位置相同 无需交换 返回\n");
+        return ;
+    }
+    
+    if (firstPosition <= 0 || secondPosition <= 0) {
+        printf("位置点小于等于0 无法交换 直接返回\n");
+        return ;
+    }
+    
+    ListNode *firstPre;
+    ListNode *secondPre;
+    
+    firstPre = getPreListNode(head, firstPosition-1);         //  寻找 firstPosition 的前一个节点
+    
+    if (firstPre == NULL) {
+        printf("没有找到firstPosition 的前一个节点 ，越界了  直接返回\n");
+        return ;
+    }else{
+        printf("firstPosition 的前一个节点找到了  \n");
+        
+        
+        secondPre = getPreListNode(head, secondPosition-1);     //  寻找 secondPosition 的前一个节点
+        
+        if (secondPre == NULL) {
+            printf("没有找到secondPosition 的前一个节点 ，越界了  直接返回\n");
+            return ;
+        }
+        
+        printf("secondPosition 的前一个节点找到了 \n ");
+        
+    }
+    
+    
+    ListNode *p1,*p2;
+    p1 = firstPre->next;
+    p2 = secondPre->next;
+    
+    if (p1->next == p2) {
+        printf("firstPosition 是 secondPosition 的前节点\n");
+        
+        if (p2->next == NULL) {
+            printf("secondPosition 是最后一个节点\n");
+            
+            firstPre->next = p2;
+            p2->next = p1;
+            p1->next = NULL;
+            
+            return ;
+            
+        }else{
+            
+            ListNode *secondNext;
+            secondNext = p2->next;
+            
+            firstPre->next = p2;
+            p2->next = p1;
+            p1->next = secondNext;
+            
+            return ;
+            
+        }
+        
+        
+    }else if (p2->next == p1){
+        printf("secondPosition 是 firstPosition 的前节点\n");
+        
+        if (p1->next == NULL) {
+            printf("firstPosition 是最后一个节点\n");
+            
+            secondPre->next = p1;
+            p1->next = p2;
+            p2->next = NULL;
+            
+            return ;
+            
+        }else{
+            
+            ListNode * firstNext;
+            firstNext = p1->next;
+            
+            secondPre->next = p1;
+            p1->next = p2;
+            p2->next = firstNext;
+            
+            
+        }
+        
+        
+        
+        
+        
+    }else{
+        printf("两个交换的节点不相邻 \n");
+        
+        ListNode *firstNext,*secondNext;
+        
+        firstNext = p1->next;
+        secondNext = p2->next;
+        
+        if (firstNext && secondNext) {
+            printf("前后都存在 两个节点都不在末尾\n");
+            
+            
+            
+            firstPre->next = p2;
+            p2->next = firstNext;
+            
+            secondPre->next = p1;
+            p1->next = secondNext;
+            
+            
+        }else if (firstNext == NULL){
+            printf("firstPosition 在末尾\n");
+            //  secondPre->p2->secondNext firstPre->p1->NULL
+            
+            secondPre->next = p1;
+            p1->next = secondNext;
+            
+            firstPre->next = p2;
+            p2->next = NULL;
+            
+            
+            
+            
+            
+        }else if (secondNext == NULL){
+            printf("secondPosition 在末尾\n");
+            //  firstPre->p1->firstNext secondPre->p2->NULL
+            
+            firstPre->next = p2;
+            p2->next = firstNext;
+            
+            secondPre->next = p1;
+            p1->next = NULL;
+            
+        }
+        
+        
+        
+    }
+    
 
 }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -419,22 +635,14 @@ int main(int argc, const char * argv[]) {
     
     
     ListNode * head;
-    head = creatList(0);
+    head = creatList(3);
     
     printList(head);
     printf("\n");
     
     
-    ListNode * p1 = (ListNode*)malloc(sizeof(ListNode));
-    
-    
-    
-    strcpy(p1->name, "insert");
-    p1->score = 111;
-//    insertAtFirst(head, p1);
-    
-    insertAtLast(head, p1);
-    
+    exchangePosition(head,1, 3);
+        
     
     printf("\n\n");
     printList(head);
