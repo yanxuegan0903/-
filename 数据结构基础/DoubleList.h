@@ -23,13 +23,13 @@ typedef struct DoubleNode DoubleList;
 DoubleList *creatDoubleList(int count){
     
     DoubleList *head;
-    DoubleList *p = NULL, *precede;
+    DoubleList *p = NULL, *pre;
     
     head = (DoubleList *)malloc(sizeof(DoubleList));
     head->next = NULL;
     head->pre = NULL;
     
-    precede = head;
+    pre = head;
     
     
     for (int i = 1; i<=count; i++) {
@@ -41,11 +41,11 @@ DoubleList *creatDoubleList(int count){
         printf("请输入第%d个学生的成绩:",i);
         scanf("%d",&p->score);
         
-        precede->next = p;
-        p->pre = precede;
+        pre->next = p;
+        p->pre = pre;
         
         
-        precede = p;
+        pre = p;
         
     }
     
