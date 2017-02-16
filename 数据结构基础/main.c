@@ -9,6 +9,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "DoubleList.c"
+
 
 /*
  声明一个结构体 定义节点
@@ -576,8 +578,6 @@ void exchangePosition(ListNode *head, int firstPosition,int secondPosition){
         if (firstNext && secondNext) {
             printf("前后都存在 两个节点都不在末尾\n");
             
-            
-            
             firstPre->next = p2;
             p2->next = firstNext;
             
@@ -587,21 +587,14 @@ void exchangePosition(ListNode *head, int firstPosition,int secondPosition){
             
         }else if (firstNext == NULL){
             printf("firstPosition 在末尾\n");
-            //  secondPre->p2->secondNext firstPre->p1->NULL
-            
             secondPre->next = p1;
             p1->next = secondNext;
             
             firstPre->next = p2;
             p2->next = NULL;
             
-            
-            
-            
-            
         }else if (secondNext == NULL){
             printf("secondPosition 在末尾\n");
-            //  firstPre->p1->firstNext secondPre->p2->NULL
             
             firstPre->next = p2;
             p2->next = firstNext;
@@ -610,21 +603,88 @@ void exchangePosition(ListNode *head, int firstPosition,int secondPosition){
             p1->next = NULL;
             
         }
-        
-        
-        
     }
-    
-
 }
 
 
+/*
+ 对单链表进行排序
+ */
 
-
-
-
-
-
+ListNode * sort(ListNode *pHead){
+    
+    ListNode* pCurr = (ListNode *)NULL;
+    ListNode* pPost = (ListNode *)NULL;
+    ListNode* pFirst = (ListNode *)NULL;
+    ListNode* pPrev = (ListNode *)NULL;
+    unsigned int uwLinkListLength = 0;
+    unsigned int uwInnerLoopIndex = 0;
+    unsigned int uwOuterLoopIndex = 0;
+    
+    if (NULL == pHead)
+    {
+        printf("链表是空的,直接返回\n");
+        return (ListNode *)NULL;
+    }
+    
+    pFirst = (ListNode *)malloc(sizeof(ListNode));
+    if (NULL == pFirst)
+    {
+        return (ListNode *)NULL;
+    }
+    
+    uwLinkListLength = lenght(pHead);
+    uwOuterLoopIndex = uwLinkListLength;
+    pFirst->next = pHead;
+    
+    while (uwOuterLoopIndex > 0)
+    {
+        pFirst->next = pHead;
+        pCurr = pFirst->next;
+        pPost = pCurr->next;
+        
+        uwInnerLoopIndex = uwOuterLoopIndex;
+        while ((NULL != pPost) && (uwInnerLoopIndex > 0))
+        {
+            if (pCurr->score > pPost->score)
+            {
+                pFirst->next->next = pPost->next;
+                pPost->next = pFirst->next;
+                
+                if (pHead == pFirst->next)
+                {
+                    pHead = pPost;
+                    pPrev = pPost;
+                }
+                else
+                {
+                    pPrev->next = pPost;
+                    pPrev = pPrev->next;
+                }
+                
+                pPost = pCurr->next;
+                pFirst->next = pCurr;
+                
+                
+                
+            }
+            else
+            {
+                pPrev = pCurr;
+                pCurr = pCurr->next;
+                pPost = pCurr->next;
+                pFirst->next = pCurr;
+            }
+            uwInnerLoopIndex--;
+        }
+        uwOuterLoopIndex--;
+    }
+    
+    pFirst->next = NULL;
+    free(pFirst);
+    pFirst = NULL;
+    return pHead;
+}
 
 
 
@@ -634,18 +694,15 @@ void exchangePosition(ListNode *head, int firstPosition,int secondPosition){
 int main(int argc, const char * argv[]) {
     
     
-    ListNode * head;
-    head = creatList(3);
+    DoubleList * head;
+    head = creatDoubleList(3);
     
-    printList(head);
+    printDoubleList(head);
     printf("\n");
-    
-    
-    exchangePosition(head,1, 3);
         
     
     printf("\n\n");
-    printList(head);
+    printDoubleList(head);
     printf("\n");
     
     

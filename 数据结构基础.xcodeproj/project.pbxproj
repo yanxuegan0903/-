@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A72BD66C1E515DB500425637 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = A72BD66B1E515DB500425637 /* main.c */; };
+		A7EBEBC51E55390400E0F8C0 /* DoubleList.c in Sources */ = {isa = PBXBuildFile; fileRef = A7EBEBC41E55390400E0F8C0 /* DoubleList.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		A72BD6681E515DB500425637 /* 数据结构基础 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "数据结构基础"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A72BD66B1E515DB500425637 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		A7EBEBC41E55390400E0F8C0 /* DoubleList.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = DoubleList.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				A72BD66B1E515DB500425637 /* main.c */,
+				A7EBEBC41E55390400E0F8C0 /* DoubleList.c */,
 			);
 			path = "数据结构基础";
 			sourceTree = "<group>";
@@ -120,6 +123,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7EBEBC51E55390400E0F8C0 /* DoubleList.c in Sources */,
 				A72BD66C1E515DB500425637 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,6 +253,7 @@
 				A72BD6711E515DB500425637 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
