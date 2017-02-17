@@ -79,9 +79,6 @@ void printList(ListNode * head){
         printf("\n");
     }
     
-    
-
-
 }
 
 /*----------------------插入链表结点--------------------------*/
@@ -695,11 +692,19 @@ int main(int argc, const char * argv[]) {
     
     
     DoubleList * head;
-    head = creatDoubleList(3);
+    head = creatDoubleList(2);
     
     printDoubleList(head);
     printf("\n");
-        
+    
+    
+    DoubleList * obj = (DoubleList *)malloc(sizeof(DoubleList));
+    strcpy(obj->name, "obj");
+    obj->score = 100000;
+    
+    
+    insertDoubleList(head, 0, obj);
+    
     
     printf("\n\n");
     printDoubleList(head);

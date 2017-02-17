@@ -74,4 +74,53 @@ void printDoubleList(DoubleList *head){
 }
 
 
+void insertDoubleList(DoubleList *head,int position,DoubleList * object){
+    
+    if (position < 1) {
+        printf("插入错误: position 不能小于1");
+        return ;
+    }
+    
+    
+    
+    DoubleList *p1,*p2;
+    
+    
+    p1 = head;
+    
+    int isout = 0;
+    
+    
+    for (int i = 1; i < position; i++) {
+        
+        p1 = p1->next;
+        
+        if (p1 == NULL) {
+            printf("插入错误：越界\n");
+            isout = 1;
+            break ;
+        }
+        
+    }
+    
+    if (isout == 0) {
+        
+        p2 = p1->next;
+        
+        p1->next = object;
+        object->pre = p1;
+        
+        object->next = p2;
+        if (p2) {
+            p2->pre = object;
+        }
+        
+        
+        
+    }
+    
+
+}
+
+
 
